@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StormData</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+
+      <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Plotly Core Javascript -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+    <!-- Page Jumbotron -->
+    <div class="container-fluid">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>STORM DATA</h1>
+        <p>THIS IS THE ANALYSIS OF 2008 STORM DATA (USA).</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>States by Storm Frequency</h1>
+        <div id="state_freq" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Most Frequent Storm Type</h1>
+        <div id="storm_type_freq" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Month By Storm Frequency</h1>
+        <div id="month_freq" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Storm Fatality By Gender</h1>
+        <div id="fatal_sex" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Direct and Indirect Fatality Caused By Storm Type</h1>
+        <div id="direct_indirect_storm" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Direct and Indirect Fatality By State</h1>
+        <div id="direct_indirect_state" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron" ALIGN="CENTER">
+        <h1>Bonus: HeatMap of Direct Fatality By State</h1>
+        <div id="death_heat" style="resize: both; overflow:auto"></div>
+      </div>
+    </div>
+
+</body>
+    <script>
+        {#  'Frequency of storm by State' ------------------------------------------- #}
+
+        var state_freq = [
+            {
+                x: {{ x_state_freq | safe}},
+                y: {{ y_state_freq | safe}},
+                name: 'Frequency of storm by State',
+                type: 'bar',
+                text: {{ y_state_freq | safe }}
+            }
+        ];
+
+        var layout ={
+            title: 'Frequency of Storm by State',
+            autosize: false,
+            width: 1000,
+            height: 500,
+            margin:{
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            }
+        };
+        Plotly.newPlot('state_freq', state_freq, layout);
+
+
+        {#  'Frequency of storm Type' ----------------------------------------------- #}
+
+        var storm_type_freq = [
+            {
+                x: {{ x_storm_type_freq | safe}},
+                y: {{ y_storm_type_freq | safe}},
+                name: 'Frequency of storm by Storm type',
+                type: 'bar',
+                text: {{ y_storm_type_freq | safe }}
+            }
+        ];
+
+        var layout ={
+            title: 'Frequency of Storm type',
+            autosize: false,
+            width: 1000,
+            height: 500,
+            margin:{
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            }
+        };
+        Plotly.newPlot('storm_type_freq', storm_type_freq, layout);
+
+
+        {#  'Frequency by month' ----------------------------------------------------------------- #}
+
+        var month_freq = [
+            {
+                x: {{ x_month_freq | safe}},
+                y: {{ y_month_freq | safe}},
+                name: 'Frequency of storm by Month',
+                type: 'bar',
+                text: {{ y_month_freq | safe }},
+                textposition: 'auto',
+                hoverinfo: 'none',
+                marker: {
+                    color: 'rgb(158,202,225)',
+                    opacity: 0.6,
+                    line: {
+                        color: 'rbg(8,48,107)',
+                        width: 1.5
+                    }
+                }
+            }
+        ];
+
+        var layout ={
+            title: 'Frequency of storm by Month',
+            autosize: false,
+            width: 1000,
+            height: 500,
+            margin:{
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+            }
+        };
+        Plotly.newPlot('month_freq', month_freq, layout);
+
+
+        {#  Fatality By Gender ----------------------------------------------------------- #}
+
+        var fatal_sex = [
+            {
+                labels: {{ x_fatal_sex | safe}},
+                values: {{ y_fatal_sex | safe}},
+                name: 'Frequency of storm by Month',
+                type: 'pie'
+            }
+        ];
+
+        var layout ={
+            title: 'Fatality By Gender',
+            width: 700,
+            height: 500
+        };
+        Plotly.newPlot('fatal_sex', fatal_sex, layout);
+
+
+        {# Direct and Indirect Fatlity by Storm type -------------------------------------------#}
+
+        var direct = {
+            x: {{ x_direct | safe }},
+            y: {{ y_direct | safe }},
+            name: 'Direct Fatality',
+            type: 'bar'
+        };
+
+        var indirect = {
+            x: {{ x_indirect | safe }},
+            y: {{ y_indirect | safe }},
+            name: 'Indirect Fatality',
+            type: 'bar'
+        };
+
+        var direct_indirect_storm = [direct, indirect];
+
+        var layout = {
+            barmode: 'stack',
+            title: 'Direct and Indirect Fatality by Storm Type.',
+            width: 1000,
+            height: 500
+        };
+
+        Plotly.newPlot('direct_indirect_storm', direct_indirect_storm, layout);
+
+        {# Direct and Indirect Fatlity by States ----------------------------------------------#}
+        var direct_state = {
+            x: {{ x_direct_state | safe }},
+            y: {{ y_direct_state | safe }},
+            name: 'Direct Fatality',
+            type: 'bar'
+        };
+
+        var indirect_state = {
+            x: {{ x_indirect_state | safe }},
+            y: {{ y_indirect_state | safe }},
+            name: 'Indirect Fatality',
+            type: 'bar'
+        };
+
+        var direct_indirect_state = [direct_state, indirect_state];
+
+        var layout = {
+            barmode: 'stack',
+            title: 'Direct and Indirect Fatality by State.',
+            width: 1000,
+            height: 500
+        };
+
+        Plotly.newPlot('direct_indirect_state', direct_indirect_state, layout);
+
+        {# Direct and Indirect Fatlity by States HEATMAP----------------------------------------------#}
+
+        var death_heat = [
+              {
+                z: {{ y_death_heat | safe }},
+                x: {{ x_death_heat | safe }},
+                y: {{ x_death_heat | safe }},
+                type: 'heatmap'
+              }
+        ];
+        var layout = {
+            title: 'Top 10 Direct Fatality by State. HEATMAP',
+            width: 1000,
+            height: 500
+        };
+
+        Plotly.newPlot('death_heat', death_heat, layout);
+
+    </script>
+</html>
