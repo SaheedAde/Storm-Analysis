@@ -18,18 +18,11 @@ def data_analysis(request):
     # df2 = pd.read_excel(data, 'Fatalities')
 
     # USING CSV BECAUSE IT LOADS FASTER
-    # Details = 'stormdata/Details.csv'
+    Details = 'stormdata/Details.csv'
     Fatalities = 'stormdata/Fatalities.csv'
     #
-    # df1 = pd.read_csv(Details, encoding="ISO-8859-1")
+    df1 = pd.read_csv(Details, encoding="ISO-8859-1")
     df2 = pd.read_csv(Fatalities, encoding="ISO-8859-1")
-
-    Det11 = pd.read_csv('stormdata/Det11.csv', encoding="ISO-8859-1")
-    Det12 = pd.read_csv('stormdata/Det12.csv', encoding="ISO-8859-1")
-    Det21 = pd.read_csv('stormdata/Det22a.csv',encoding="ISO-8859-1")
-    Det22 = pd.read_csv('stormdata/Det22b.csv', encoding="ISO-8859-1")
-
-    df1=pd.concat([Det11, Det12, Det21, Det22], ignore_index=True, sort=True)
 
 
     # state frequency-----------------------------------------------------------------------------
