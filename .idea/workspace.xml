@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ceb4a5-2887-496c-9c5d-90e2760447d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/STORM/settings.py" afterPath="$PROJECT_DIR$/STORM/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stormdata/Details.csv" afterPath="$PROJECT_DIR$/stormdata/Details.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
